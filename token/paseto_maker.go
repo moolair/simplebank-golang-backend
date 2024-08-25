@@ -43,10 +43,7 @@ func (maker *PasetoMaker) CreateToken(username string,
 			err
 	}
 
-	token, err := maker.paseto.Encrypt(maker.symmetricKey, payload, nil)
-	return token,
-		// payload,
-		err
+	return maker.paseto.Encrypt(maker.symmetricKey, payload, nil)
 }
 
 // VerifyToken checks if the token is valid or not

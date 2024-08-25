@@ -57,3 +57,22 @@ func TestExpiredPasetoToken(t *testing.T) {
 	require.EqualError(t, err, ErrExpiredToken.Error())
 	require.Nil(t, payload)
 }
+
+// func TestInvalidPasetoTokenAlgNone(t *testing.T) {
+// 	payload, err := NewPayload(util.RandomOwner(),
+// 		// util.DepositorRole,
+// 		time.Minute)
+// 	require.NoError(t, err)
+
+// 	jwtToken := jwt.NewWithClaims(jwt.SigningMethodNone, payload)
+// 	token, err := jwtToken.SignedString(jwt.UnsafeAllowNoneSignatureType)
+// 	require.NoError(t, err)
+
+// 	maker, err := NewJWTMaker(util.RandomString(32))
+// 	require.NoError(t, err)
+
+// 	payload, err = maker.VerifyToken(token)
+// 	require.Error(t, err)
+// 	require.EqualError(t, err, ErrInvalidToken.Error())
+// 	require.Nil(t, payload)
+// }
