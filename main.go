@@ -8,11 +8,11 @@ import (
 	_ "github.com/lib/pq"
 	"github.com/techschool/simplebank/api"
 	db "github.com/techschool/simplebank/db/sqlc"
+	"github.com/techschool/simplebank/gapi"
+	"github.com/techschool/simplebank/pb"
 	"github.com/techschool/simplebank/util"
-	// "github.com/techschool/simplebank/gapi"
-	// "github.com/techschool/simplebank/pb"
-	// "google.golang.org/grpc"
-	// "google.golang.org/grpc/reflection"
+	"google.golang.org/grpc"
+	"google.golang.org/grpc/reflection"
 )
 
 func main() {
