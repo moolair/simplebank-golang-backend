@@ -3,11 +3,11 @@ package gapi
 import (
 	"fmt"
 
-	db "github.com/techschool/simplebank/db/sqlc"
-	"github.com/techschool/simplebank/pb"
-	"github.com/techschool/simplebank/token"
-	"github.com/techschool/simplebank/util"
-	// "github.com/techschool/simplebank/worker"
+	db "github.com/moolair/simplebank-golang-backend/db/sqlc"
+	"github.com/moolair/simplebank-golang-backend/pb"
+	"github.com/moolair/simplebank-golang-backend/token"
+	"github.com/moolair/simplebank-golang-backend/util"
+	// "github.com/moolair/simplebank-golang-backend/worker"
 )
 
 // Server serves gRPC requests for our banking service.

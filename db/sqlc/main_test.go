@@ -7,7 +7,7 @@ import (
 	"testing"
 
 	_ "github.com/lib/pq"
-	"github.com/techschool/simplebank/util"
+	"github.com/moolair/simplebank-golang-backend/util"
 )
 
 var testQueries *Queries
