@@ -13,7 +13,7 @@ type Config struct {
 	DBSource string `mapstructure:"DB_SOURCE"`
 	// ServerAddress string `mapstructure:"SERVER_ADDRESS"`
 
-	// Environment          string        `mapstructure:"ENVIRONMENT"`
+	Environment string `mapstructure:"ENVIRONMENT"`
 	// AllowedOrigins       []string      `mapstructure:"ALLOWED_ORIGINS"`
 	MigrationURL string `mapstructure:"MIGRATION_URL"`
 	// RedisAddress         string        `mapstructure:"REDIS_ADDRESS"`
