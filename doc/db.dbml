@@ -8,18 +8,29 @@ Project simple_bank {
 }
 
 Table users as U{
-  Username varchar [pk]
+  username varchar [pk]
   hash_password varchar [not null]
   full_name varchar [not null]
   email varchar [unique, not null]
+  is_email_verified bool [not null, default: false]
   password_changed_at timestamptz [not null, default: '0001-01-01 00:00:00Z']
   created_at timestamptz [not null, default: `now()`]
+}
+
+Table verify_emails {
+  id bigserial [pk]
+  username varchar [ref: > U.username, not null]
+  email varchar [not null]
+  secret_code varchar [not null]
+  is_used bool [not null, default: false]
+  created_at timestamptz [not null, default: `now()`]
+  expired_at timestamptz [not null, default: `now() + interval '15minute'`]
 }
 
 
 Table accounts as A {
   id bigserial [pk]
-  owner varchar [ref: > U.Username, not null]
+  owner varchar [ref: > U.username, not null]
   balance bigint [not null]
   currency varchar [not null]
   created_at timestamptz [not null, default: `now()`]
@@ -56,7 +67,7 @@ Table transfers {
 
 Table sessions as S{
     id uuid [pk]
-    username varchar [ref: > U.Username, not null]
+    username varchar [ref: > U.username, not null]
     refresh_token varchar [not null]
     user_agent varchar [not null]
     client_ip varchar [not null]

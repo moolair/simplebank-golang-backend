@@ -1,14 +1,25 @@
 -- SQL dump generated using DBML (dbml.dbdiagram.io)
 -- Database: PostgreSQL
--- Generated at: 2024-10-06T22:24:23.744Z
+-- Generated at: 2024-10-23T09:02:54.079Z
 
 CREATE TABLE "users" (
-  "Username" varchar PRIMARY KEY,
+  "username" varchar PRIMARY KEY,
   "hash_password" varchar NOT NULL,
   "full_name" varchar NOT NULL,
   "email" varchar UNIQUE NOT NULL,
+  "is_email_verified" bool NOT NULL DEFAULT false,
   "password_changed_at" timestamptz NOT NULL DEFAULT '0001-01-01 00:00:00Z',
   "created_at" timestamptz NOT NULL DEFAULT (now())
+);
+
+CREATE TABLE "verify_emails" (
+  "id" bigserial PRIMARY KEY,
+  "username" varchar NOT NULL,
+  "email" varchar NOT NULL,
+  "secret_code" varchar NOT NULL,
+  "is_used" bool NOT NULL DEFAULT false,
+  "created_at" timestamptz NOT NULL DEFAULT (now()),
+  "expired_at" timestamptz NOT NULL DEFAULT (now() + interval '15minute')
 );
 
 CREATE TABLE "accounts" (
@@ -61,7 +72,9 @@ COMMENT ON COLUMN "entities"."amount" IS 'can be negative or positive';
 
 COMMENT ON COLUMN "transfers"."amount" IS 'must be positive';
 
-ALTER TABLE "accounts" ADD FOREIGN KEY ("owner") REFERENCES "users" ("Username");
+ALTER TABLE "verify_emails" ADD FOREIGN KEY ("username") REFERENCES "users" ("username");
+
+ALTER TABLE "accounts" ADD FOREIGN KEY ("owner") REFERENCES "users" ("username");
 
 ALTER TABLE "entities" ADD FOREIGN KEY ("account_id") REFERENCES "accounts" ("id");
 
@@ -69,4 +82,4 @@ ALTER TABLE "transfers" ADD FOREIGN KEY ("from_account_id") REFERENCES "accounts
 
 ALTER TABLE "transfers" ADD FOREIGN KEY ("to_account_id") REFERENCES "accounts" ("id");
 
-ALTER TABLE "sessions" ADD FOREIGN KEY ("username") REFERENCES "users" ("Username");
+ALTER TABLE "sessions" ADD FOREIGN KEY ("username") REFERENCES "users" ("username");
