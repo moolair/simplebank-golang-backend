@@ -27,10 +27,10 @@ func newTestServer(t *testing.T, store db.Store, taskDistributor worker.TaskDist
 }
 
 func newContextWithBearerToken(t *testing.T, tokenMaker token.Maker, username string,
-	// role string,
+	role string,
 	duration time.Duration) context.Context {
 	accessToken, _, err := tokenMaker.CreateToken(username,
-		// role,
+		role,
 		duration)
 	require.NoError(t, err)
 

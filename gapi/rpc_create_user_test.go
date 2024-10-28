@@ -63,8 +63,8 @@ func randomUser(t *testing.T,
 	require.NoError(t, err)
 
 	user = db.User{
-		Username: util.RandomOwner(),
-		// Role:           role,
+		Username:       util.RandomOwner(),
+		Role:           util.DepositorRole,
 		HashedPassword: hashedPassword,
 		FullName:       util.RandomOwner(),
 		Email:          util.RandomEmail(),
