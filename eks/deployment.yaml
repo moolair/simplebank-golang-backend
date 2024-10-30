@@ -19,3 +19,7 @@ spec:
         image: 183295416600.dkr.ecr.ca-central-1.amazonaws.com/simplebank:c895baf665e78b57e6aa295805a4d0d6c367ce64
         ports:
         - containerPort: 8080
+          name: http-server
+        - containerPort: 9090
+          name: grpc-server
+        
